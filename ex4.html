@@ -11,19 +11,43 @@
 
    <input type="text" id="inputText">
    <!-- add a button here for adding new item -->
+   <!-- <input type="text" name="items" placeholder="enter items"> -->
+   <button onclick="CheckList()">Enter</button>
 
-   <ul>
-      <li>Notebook<!--<button>Delete</button></li>-->
-      <li>Jello</li>
-      <li>Spinach</li>
-      <li>Rice</li>
-      <li>Birthday Cake</li>
-      <li>Candles</li>
+   <ul id="myList">
+      <!-- <li>Notebook<button>Delete</button></li> -->
+      <li>Notebook <button onclick="Delete(this)">Delete</button></li> 
+      <li>Jello <button onclick="Delete(this)">Delete</button></li> 
+      <li>Spinach <button onclick="Delete(this)">Delete</button></li>
+      <li>Rice <button onclick="Delete(this)">Delete</button></li>
+      <li>Birthday Cake <button onclick="Delete(this)">Delete</button></li> 
+      <li>Candles <button onclick="Delete(this)">Delete</button></li> 
    </ul>
 
    <script>
 
       // add code here
+         function CheckList(){
+         var item=document.getElementById('inputText').value;
+         
+         if(item.length==0){
+            alert('Please eneter an item');
+            return;
+         }
+         
+            var li=document.createElement('li');
+            li.innerText=item+" ";
+            var btn = document.createElement("button");
+            btn.innerText = "Delete";
+            btn.onclick = function() { Delete(this); };
+            li.appendChild(btn);
+            document.getElementById("myList").appendChild(li);
+            document.getElementById("inputText").value="";
+         
+        } function Delete(button){
+            // button.parentNode is the <li> element
+            button.parentNode.remove();
+        }
 
    </script>
 
